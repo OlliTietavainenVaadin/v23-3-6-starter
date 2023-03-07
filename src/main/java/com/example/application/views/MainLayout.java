@@ -4,7 +4,7 @@ package com.example.application.views;
 import com.example.application.components.appnav.AppNav;
 import com.example.application.components.appnav.AppNavItem;
 import com.example.application.views.about.AboutView;
-import com.example.application.views.gridwithfilters.GridwithFiltersView;
+import com.vaadin.flow.component.grid.GridwithFiltersView;
 import com.example.application.views.helloworld.HelloWorldView;
 import com.example.application.views.masterdetail.MasterDetailView;
 import com.vaadin.flow.component.applayout.AppLayout;

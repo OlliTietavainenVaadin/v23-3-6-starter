@@ -1,4 +1,4 @@
-package com.example.application.views.gridwithfilters;
+package com.vaadin.flow.component.grid;
 
 import com.example.application.data.entity.SamplePerson;
 import com.example.application.data.service.SamplePersonService;
@@ -11,8 +11,6 @@ import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.Uses;
-import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -40,7 +38,7 @@ import org.springframework.data.jpa.domain.Specification;
 @Uses(Icon.class)
 public class GridwithFiltersView extends Div {
 
-    private Grid<SamplePerson> grid;
+    private CustomGrid<SamplePerson> grid;
 
     private Filters filters;
     private final SamplePersonService samplePersonService;
@@ -223,7 +221,7 @@ public class GridwithFiltersView extends Div {
     }
 
     private Component createGrid() {
-        grid = new Grid<>(SamplePerson.class, false);
+        grid = new CustomGrid<>(SamplePerson.class, false);
         grid.addColumn("firstName").setAutoWidth(true);
         grid.addColumn("lastName").setAutoWidth(true);
         grid.addColumn("email").setAutoWidth(true);
@@ -232,9 +230,11 @@ public class GridwithFiltersView extends Div {
         grid.addColumn("occupation").setAutoWidth(true);
         grid.addColumn("role").setAutoWidth(true);
 
+
+
         grid.setItems(query -> samplePersonService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)),
-                filters).stream());
+                filters).stream(), query -> samplePersonService.count());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
         grid.addClassNames(LumoUtility.Border.TOP, LumoUtility.BorderColor.CONTRAST_10);
 
