@@ -18,6 +18,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
@@ -63,7 +64,8 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
     public MasterDetailView(SamplePersonService samplePersonService) {
         this.samplePersonService = samplePersonService;
         addClassNames("master-detail-view");
-
+        VerticalLayout vl = new VerticalLayout();
+        vl.setSpacing(true);
         // Create UI
         SplitLayout splitLayout = new SplitLayout();
 
@@ -73,6 +75,13 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
         add(splitLayout);
 
         // Configure Grid
+        grid.addComponentColumn( item -> {
+            TextField textField = new TextField();
+            if (item.isImportant()) {
+                textField.setEnabled(false);
+            }
+            return  textField;
+        });
         grid.addColumn("firstName").setAutoWidth(true);
         grid.addColumn("lastName").setAutoWidth(true);
         grid.addColumn("email").setAutoWidth(true);

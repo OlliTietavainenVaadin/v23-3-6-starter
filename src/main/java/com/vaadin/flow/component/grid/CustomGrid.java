@@ -1,5 +1,6 @@
 package com.vaadin.flow.component.grid;
 
+import com.example.application.views.masterdetail.CustomSelectionModel;
 import com.vaadin.flow.component.ComponentEvent;
 
 public class CustomGrid<T> extends Grid<T> {
@@ -12,7 +13,7 @@ public class CustomGrid<T> extends Grid<T> {
     }
 
     @Override
-    protected void fireEvent(ComponentEvent<?> componentEvent) {
+    public void fireEvent(ComponentEvent<?> componentEvent) {
         super.fireEvent(componentEvent);
     }
 }

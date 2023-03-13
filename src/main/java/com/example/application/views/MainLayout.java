@@ -57,7 +57,7 @@ public class MainLayout extends AppLayout {
 
         nav.addItem(new AppNavItem("Hello World", HelloWorldView.class, "la la-globe"));
         nav.addItem(new AppNavItem("About", AboutView.class, "la la-file"));
-        nav.addItem(new AppNavItem("Grid with Filters", GridwithFiltersView.class, "la la-filter"));
+        // nav.addItem(new AppNavItem("Grid with Filters", GridwithFiltersView.class, "la la-filter"));
         nav.addItem(new AppNavItem("Master-Detail", MasterDetailView.class, "la la-columns"));
 
         return nav;
